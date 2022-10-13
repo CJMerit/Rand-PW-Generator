@@ -6,6 +6,102 @@ var passwordCriteria = {
   specialChar: true
 };
 
+function generatePassword(num) {
+  var password = ''
+  var characters = [];
+  if (passwordCriteria.lowercase && passwordCriteria.uppercase && passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 70)];
+    }
+  }
+  else if(passwordCriteria.lowercase && passwordCriteria.uppercase && passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 62)];
+    }
+  }
+  else if(passwordCriteria.lowercase && passwordCriteria.uppercase && !passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 60)];
+    }
+  }
+  else if (passwordCriteria.lowercase && !passwordCriteria.uppercase && passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 44)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && passwordCriteria.uppercase && passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 44)];
+    }
+  }
+  else if (passwordCriteria.lowercase && passwordCriteria.uppercase && !passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 52)];
+    }
+  }
+  else if (passwordCriteria.lowercase && !passwordCriteria.uppercase && passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 36)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && passwordCriteria.uppercase && passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 36)];
+    }
+  }
+  else if (passwordCriteria.lowercase && !passwordCriteria.uppercase && !passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 34)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && passwordCriteria.uppercase && !passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 34)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && !passwordCriteria.uppercase && passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = '0123456789!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 18)];
+    }
+  }
+  else if (passwordCriteria.lowercase && !passwordCriteria.uppercase && !passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 26)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && passwordCriteria.uppercase && !passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 26)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && !passwordCriteria.uppercase && passwordCriteria.numeric && !passwordCriteria.specialChar) {
+    characters = '0123456789'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 10)];
+    }
+  }
+  else if (!passwordCriteria.lowercase && !passwordCriteria.uppercase && !passwordCriteria.numeric && passwordCriteria.specialChar) {
+    characters = '!@#$%^&*'.split('');
+    for (var i = 0; i < num; i++) {
+      password += characters[Math.floor(Math.random() * 8)];
+    }
+  }
+  return password;
+}
+
 function getPasswordCriteria() {
   var passwordLength = window.prompt('Password length between 8 and 128', 8);
 
@@ -74,8 +170,8 @@ function getPasswordCriteria() {
     return('Are you expecting a blank password?')
   }
   else {
-    //var password = generatePassword(passwordLength);
-    return; //password;
+    var password = generatePassword(passwordLength);
+    return password;
   }
 }
 
